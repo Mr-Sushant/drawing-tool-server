@@ -3,12 +3,13 @@ const {createServer} = require("http");
 const {Server} = require("socket.io");
 const cors = require("cors");
 
-const FRONTEND_URL = app.settings.env === 'development' ? 'http://localhost:3000':'https://drawconnect.vercel.app/';
+
 
 const app = express();
 app.use(cors({origin: FRONTEND_URL}));
 const httpServer = createServer(app);
 const io = new Server(httpServer,{ cors: FRONTEND_URL });
+const FRONTEND_URL = app.settings.env === 'development' ? 'http://localhost:3000':'https://drawconnect.vercel.app/';
 
 io.on("connection", (socket) =>{
     console.log("connection setup");
